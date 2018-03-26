@@ -48,12 +48,12 @@ session_start();
 </form>
          
        <?php
-        include 'DBConnection.php';
+        include 'MDBConnection.php';
         $conn = getDataBaseconnection('Recipes');
         
-        if (isset($_POST["type"])) 
+        if (isset($_POST["type_name"])) 
         {
-           $type = $_POST["type"];   
+           $type = $_POST["type_name"];   
         }
         
          if (isset($_POST["texty"])) 
@@ -68,14 +68,14 @@ session_start();
 		            ";
         }
         ///once they type+id filds ahs been filed out this can be used. all the other sql statemtents will also need to be updated
-      /*  else if (isset($_POST["texty"]) and $type == "type_name") 
+        else if (isset($_POST["texty"]) and $type == "type_name") 
         {
            $sql = "SELECT * FROM  Recipe
 		            LEFT JOIN Author ON Recipe.author_id=Author.author_id
 		            LEFT JOIN Type ON Recipe.type_id=Type.type_id
 		            WHERE Type.type_name LIKE '$text'
 		            ";
-        }*/
+        }
          else if(isset($_POST["texty"]) and (isset($_POST["type"]))) 
         {
            $sql = "SELECT * FROM  Recipe
