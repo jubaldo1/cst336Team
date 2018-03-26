@@ -2,7 +2,7 @@
 function getDataBaseconnection($opt){
     $host='localhost';
     $dbname=$opt;
-    $username='rpalaces';
+    $username='pnikolov1459';
     $password='';
     $dbConn = new PDO("mysql:host=$host;dbname=$dbname",$username,$password);
     
