@@ -73,14 +73,14 @@ session_start();
            $sql = "SELECT * FROM  Recipe
 		            LEFT JOIN Author ON Recipe.author_id=Author.author_id
 		            LEFT JOIN Type ON Recipe.type_id=Type.type_id
-		            WHERE Type.type_name LIKE '$text'
+		            WHERE Type.type_name LIKE '%$text%'
 		            ";
         }
         else if(isset($_POST["texty"]) and (isset($_POST["type"]))) 
         {
            $sql = "SELECT * FROM  Recipe
 		            LEFT JOIN Author ON Recipe.author_id=Author.author_id
-		            WHERE $type LIKE '$text'
+		            WHERE $type LIKE '%$text%'
 		            "; 
         }
         else 
