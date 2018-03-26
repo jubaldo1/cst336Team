@@ -51,9 +51,9 @@ session_start();
         include 'MDBConnection.php';
         $conn = getDataBaseconnection('Recipes');
         
-        if (isset($_POST["type_name"])) 
+        if (isset($_POST["type"])) 
         {
-           $type = $_POST["type_name"];   
+           $type = $_POST["type"];   
         }
         
          if (isset($_POST["texty"])) 
@@ -64,7 +64,7 @@ session_start();
         {
            $sql = "SELECT * FROM  Recipe
 		            LEFT JOIN Author ON Recipe.author_id=Author.author_id
-		            WHERE Author.auth_name LIKE '$text'
+		            WHERE Author.auth_name LIKE '%$text%'
 		            ";
         }
         ///once they type+id filds ahs been filed out this can be used. all the other sql statemtents will also need to be updated
@@ -76,7 +76,7 @@ session_start();
 		            WHERE Type.type_name LIKE '$text'
 		            ";
         }
-         else if(isset($_POST["texty"]) and (isset($_POST["type"]))) 
+        else if(isset($_POST["texty"]) and (isset($_POST["type"]))) 
         {
            $sql = "SELECT * FROM  Recipe
 		            LEFT JOIN Author ON Recipe.author_id=Author.author_id
@@ -89,21 +89,20 @@ session_start();
                     LEFT JOIN Author ON Recipe.author_id=Author.author_id"; 
         }
        
-       
         $stmt = $conn -> prepare ($sql);
         
         $stmt -> execute ();
         $records = $stmt->fetchALL(PDO::FETCH_ASSOC);
+        
         echo "<table class='table'>";
-         echo " <thead><tr><td><h2>Recipe Name</h2></td><td><h2>Description</h2></td><td><h2>Cost</h2></td><td><h2>Author</h2></td></tr></thead>";
+        echo " <thead><tr><td><h2>Recipe Name</h2></td><td><h2>Description</h2></td><td><h2>Cost</h2></td><td><h2>Author</h2></td></tr></thead>";
         foreach($records as $record){
         echo "<tr><td>" . "<a href='recipes/" . $record['name'] . ".php'>". $record['name']. "</a>". "</td><td>" . $record['description'] . "</td><td>" . $record['price'] . "</td><td>" . $record['auth_name'] . "</td>";
-         echo "<form method='POST'>";
+        echo "<form method='POST'>";
                 echo "<input type='hidden' name='recipeName' value=" . $record['name']. ">";
                 echo "<input type='hidden' name='description' value=" . $record['description']. ">";
                 echo "<input type='hidden' name='price' value=" . $record['price']. ">";
                 echo "<input type='hidden' name='authname' value=" . $record['auth_name']. ">";
-         
                 
                 // Check to see if the most recent POST request has the same itemId
                 // If so, this item was just added to the cart. Display different button.
