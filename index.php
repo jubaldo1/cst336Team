@@ -112,16 +112,16 @@ session_start();
                 echo "<input type='hidden' name='price' value=" . $record['price']. ">";
                 echo "<input type='hidden' name='authname' value=" . $record['auth_name']. ">";
                 
-                echo "<button class='btn btn-success' type='submit' name='add' value='added'>Add</button></td></tr>";
+                //echo "<button class='btn btn-success' type='submit' name='add' value='added'>Add</button></td></tr>";
                 
                 // Check to see if the most recent POST request has the same itemId
                 // If so, this item was just added to the cart. Display different button.
-                /*if($_POST['recipeName'] == $record['name']){
+                if($_POST['recipeName'] == $record['name']){
                     echo '<td><button class="btn btn-success">Added</button></td></tr>';
                 }
                 else {
                     echo '<td><button class="btn btn-warning">Add</button></td></tr>';
-                }*/
+                }
     }
    echo "</table>";     
 ?>
