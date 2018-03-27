@@ -117,10 +117,10 @@ session_start();
                 // Check to see if the most recent POST request has the same itemId
                 // If so, this item was just added to the cart. Display different button.
                 if($_POST['recipeName'] == $record['name']){
-                    echo '<td><button class="btn btn-success">Added</button></td></tr>';
+                    echo '<td><button type="submit" class="btn btn-success">Added</button></td></tr>';
                 }
                 else {
-                    echo '<td><button class="btn btn-warning">Add</button></td></tr>';
+                    echo '<td><button type="submit" class="btn btn-warning">Add</button></td></tr>';
                 }
     }
    echo "</table>";     
