@@ -14,13 +14,13 @@ session_start();
         
     </head>
     <body>
-          <div class="container"> 
-         <div class="jumbotron vertical-center">
+        <div class="container"> 
+            <div class="jumbotron vertical-center">
             
               <h1>Phancy Phoods</h1>
          
-         </div>
-          </div>
+            </div>
+        </div>
       
   <div class="container">
       <form method="POST" role="form" class="form-horizontal">
@@ -40,11 +40,18 @@ session_start();
       <input type="text" class="form-control" name="texty">
     </div>
   </div>
+  
+  <div class="form-group">
+      <input type="radio" name="sort" value="asc">Ascending<br>
+      <input type="radio" name="sort" value="desc">Descending<br>
+  </div>
+  
   <div class="form-group">
     <div class="col-sm-offset-2 col-sm-10">
       <button type="submit" class="btn btn-default">Search</button>
     </div>
   </div>
+  
 </form>
     <?php
 if (isset($_POST['recipeName'])) 
