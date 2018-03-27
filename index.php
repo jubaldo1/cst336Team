@@ -103,7 +103,7 @@ session_start();
                     $record['description'] . "</td><td>" . 
                     $record['price'] . "</td><td>" . 
                     $record['auth_name'] . "</td>";
-            echo "<button type='submit' name='add' value='added'>Add</button></td></tr>";
+                    
         /*TEST: Added action='shop.php' to show the cart when a button is clicked*/
         // for this, we need to wrap up the info into one "object" and push it into a waiting array
             echo "<form action='index.php' method='post'>";
@@ -112,7 +112,7 @@ session_start();
                 echo "<input type='hidden' name='price' value=" . $record['price']. ">";
                 echo "<input type='hidden' name='authname' value=" . $record['auth_name']. ">";
                 
-                // echo "<button type='submit' name='add' value='added'>Add</button></td></tr>";
+                echo "<button class='btn btn-success' type='submit' name='add' value='added'>Add</button></td></tr>";
                 
                 // Check to see if the most recent POST request has the same itemId
                 // If so, this item was just added to the cart. Display different button.
