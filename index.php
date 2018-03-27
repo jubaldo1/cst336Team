@@ -98,20 +98,25 @@ session_start();
         echo " <thead><tr><td><h2>Recipe Name</h2></td><td><h2>Description</h2></td><td><h2>Cost</h2></td><td><h2>Author</h2></td></tr></thead>";
         foreach($records as $record){
         echo "<tr><td>" . "<a href='recipes/" . $record['name'] . ".php'>". $record['name']. "</a>". "</td><td>" . $record['description'] . "</td><td>" . $record['price'] . "</td><td>" . $record['auth_name'] . "</td>";
-        echo "<form action='shop.php' method='POST'>";
+        
+        /*TEST: Added action='shop.php' to show the cart when a button is clicked*/
+        // for this, we need to wrap up the info into one "object" and push it into a waiting array
+        echo "<form action='index.php' method='post'>";
                 echo "<input type='hidden' name='recipeName' value=" . $record['name']. ">";
                 echo "<input type='hidden' name='description' value=" . $record['description']. ">";
                 echo "<input type='hidden' name='price' value=" . $record['price']. ">";
                 echo "<input type='hidden' name='authname' value=" . $record['auth_name']. ">";
                 
+                echo "<button type='submit' name='add' value='added'>Add</button>";
+                
                 // Check to see if the most recent POST request has the same itemId
                 // If so, this item was just added to the cart. Display different button.
-                if($_POST['recipeName'] == $record['name']){
+                /*if($_POST['recipeName'] == $record['name']){
                     echo '<td><button class="btn btn-success">Added</button></td></tr>';
                 }
                 else {
                     echo '<td><button class="btn btn-warning">Add</button></td></tr>';
-                }
+                }*/
     }
    echo "</table>";     
 ?>

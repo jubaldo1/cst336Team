@@ -8,7 +8,10 @@
     <body>
         <?php 
             // getting the info and displaying it here:
-            
+            if (isset())
+            {
+                
+            }
         ?>
     </body>
 </html>
