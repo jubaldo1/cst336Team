@@ -20,5 +20,15 @@
                 echo 'Nothing.';
             }
         ?>
+        
+        <?php
+            if (isset($_SESSION['recipes'])) {
+            echo "<strong>Your cart:</strong><ol>";
+            foreach (unserialize($_SESSION['recipes']) as $p) {
+                echo "<li>".$p."</li>";
+            }
+            echo "</ol>";
+            }
+        ?>
     </body>
 </html>
