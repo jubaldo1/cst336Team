@@ -47,6 +47,11 @@ session_start();
       <input type="radio" name="sort" value="auth_name">Author<br>
   </div>
   
+  <label for="desc" class="col-sm-2 control-label">Descending?</label>
+  <div class="form-group">
+      <input type="checkbox" name="desc" value="DESC">Descending<br>
+  </div>
+  
   <div class="form-group">
     <div class="col-sm-offset-2 col-sm-10">
       <button type="submit" class="btn btn-default">Search</button>
@@ -119,7 +124,11 @@ if (isset($_POST['recipeName']))
         else if (isset($_POST["sort"])) // else if a sort has been selected
         {
             $sort = $_POST["sort"];
-            
+        
+        if (isset($_POST["desc"]))
+        {
+            $desc = $_POST["desc"];
+        }
             if (isset($_POST["type"])) 
         {
            $type = $_POST["type"];   
@@ -131,33 +140,69 @@ if (isset($_POST['recipeName']))
         }
         if (isset($_POST["texty"]) and $type == "author") 
         {
+            if (!isset($_POST["desc"]))
+            {
            $sql = "SELECT * FROM  Recipe
 		            LEFT JOIN Author ON Recipe.author_id=Author.author_id
 		            WHERE Author.auth_name LIKE '%$text%'
 		            ORDER BY $sort";
+            }
+            else {
+                $sql = "SELECT * FROM  Recipe
+		            LEFT JOIN Author ON Recipe.author_id=Author.author_id
+		            WHERE Author.auth_name LIKE '%$text%'
+		            ORDER BY $sort DESC";
+            }
         }
         ///once they type+id filds ahs been filed out this can be used. all the other sql statemtents will also need to be updated
         else if (isset($_POST["texty"]) and $type == "type_name") 
         {
+         if (!isset($_POST["desc"]))
+         {    
            $sql = "SELECT * FROM  Recipe
 		            LEFT JOIN Author ON Recipe.author_id=Author.author_id
 		            LEFT JOIN Type ON Recipe.type_id=Type.type_id
 		            WHERE Type.type_name LIKE '%$text%'
 		            ORDER BY $sort";
+         }
+		 else
+		 {
+		     $sql = "SELECT * FROM  Recipe
+		            LEFT JOIN Author ON Recipe.author_id=Author.author_id
+		            LEFT JOIN Type ON Recipe.type_id=Type.type_id
+		            WHERE Type.type_name LIKE '%$text%'
+		            ORDER BY $sort DESC";
+		 }
         }
         else if(isset($_POST["texty"]) and (isset($_POST["type"]))) 
         {
+         if (!isset($_POST["desc"]))
+         {   
            $sql = "SELECT * FROM  Recipe
 		            LEFT JOIN Author ON Recipe.author_id=Author.author_id
 		            WHERE $type LIKE '%$text%'
 		            ORDER BY $sort"; 
-        }
+         }
+          else{
+              $sql = "SELECT * FROM  Recipe
+		            LEFT JOIN Author ON Recipe.author_id=Author.author_id
+		            WHERE $type LIKE '%$text%'
+		            ORDER BY $sort DESC"; 
+          }   
+         }
         else 
          {
-           $sql = " SELECT * FROM Recipe
+             if (!isset($_POST["desc"]))
+            {   
+            $sql = " SELECT * FROM Recipe
                     LEFT JOIN Author ON Recipe.author_id=Author.author_id
-                    ORDER BY $sort"; 
-         }
+                    ORDER BY $sort";
+            }
+            else{
+                $sql = " SELECT * FROM Recipe
+                    LEFT JOIN Author ON Recipe.author_id=Author.author_id
+                    ORDER BY $sort DESC";
+            }
         }
         
        
