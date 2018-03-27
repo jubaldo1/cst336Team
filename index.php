@@ -203,8 +203,8 @@ if (isset($_POST['recipeName']))
                     LEFT JOIN Author ON Recipe.author_id=Author.author_id
                     ORDER BY $sort DESC";
             }
+            }
         }
-        
        
         $stmt = $conn -> prepare ($sql);
         
