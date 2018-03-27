@@ -58,6 +58,7 @@ if (isset($_POST['recipeName']))
         $_SESSION['recipes'] = serialize($_POST['recipeName']);
     }
     
+    echo $_SESSION['recipes'];
     echo "<p>Your recipe has been added!</p>";
 }
  ?>
@@ -136,7 +137,7 @@ if (isset($_POST['recipeName']))
                 // SESSION CAN GO IN HERE
                 // $_POST['recipeName'] == $record['name']
               
-                if(isset($_POST['recipeName'])){
+                if(isset($_POST['recipeName']) == $record['name']){
                     echo '<td><button class="btn btn-success">Added</button></td></tr>';
                 }
                 else {
