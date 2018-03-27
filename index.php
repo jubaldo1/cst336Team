@@ -46,7 +46,22 @@ session_start();
     </div>
   </div>
 </form>
-         
+    <?php
+if (isset($_POST['form_products'])) 
+{
+    if (!empty($_SESSION['products']))
+    {
+        $products = array_unique(array_merge(unserialize($_SESSION['products']), $_POST['form_products']));
+        $_SESSION['products'] = serialize($products);
+    }
+    else {
+        $_SESSION['products'] = serialize($_POST['form_products']);
+    }
+    
+    echo "<p>Your products have been registered!</p>";
+}
+ ?>
+ 
        <?php
         include 'MDBConnection.php';
         $conn = getDataBaseconnection('Recipes');
@@ -94,6 +109,9 @@ session_start();
         $stmt -> execute ();
         $records = $stmt->fetchALL(PDO::FETCH_ASSOC);
         
+        // the cart link
+        echo "<a href='shop.php'>Cart</a>";
+        
         echo "<table class='table'>";
         echo " <thead><tr><td><h2>Recipe Name</h2></td><td><h2>Description</h2></td><td><h2>Cost</h2></td><td><h2>Author</h2></td></tr></thead>";
         foreach($records as $record){
@@ -106,16 +124,15 @@ session_start();
                     
         /*TEST: Added action='shop.php' to show the cart when a button is clicked*/
         // for this, we need to wrap up the info into one "object" and push it into a waiting array
-            echo "<form action='index.php' method='post'>";
+            echo "<form method='post'>";
                 echo "<input type='hidden' name='recipeName' value=" . $record['name']. ">";
                 echo "<input type='hidden' name='description' value=" . $record['description']. ">";
                 echo "<input type='hidden' name='price' value=" . $record['price']. ">";
                 echo "<input type='hidden' name='authname' value=" . $record['auth_name']. ">";
                 
-                //echo "<button class='btn btn-success' type='submit' name='add' value='added'>Add</button></td></tr>";
-                
                 // Check to see if the most recent POST request has the same itemId
                 // If so, this item was just added to the cart. Display different button.
+                // SESSION CAN GO IN HERE
                 if($_POST['recipeName'] == $record['name']){
                     echo '<td><button type="submit" class="btn btn-success">Added</button></td></tr>';
                 }
@@ -125,6 +142,7 @@ session_start();
     }
    echo "</table>";     
 ?>
+ 
 </div>
     </body>
 </html>

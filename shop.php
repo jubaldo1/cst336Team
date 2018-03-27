@@ -8,9 +8,13 @@
     <body>
         <?php 
             // getting the info and displaying it here:
-            if (isset())
+            if (isset($_POST['recipeName']))
             {
-                
+                $_SESSION['recipe'] = $_POST['recipeName'];
+            }
+            else
+            {
+                echo 'Nothing.';
             }
         ?>
     </body>
