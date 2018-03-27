@@ -58,8 +58,7 @@
         
         foreach($records as $record){
         echo $record['deviceName'] ." ". $record['deviceType'] ." ". $record['price'] ." ". $record['status'] ."<br> ";
-    
-}
+    }
         
 ?>
     </body>

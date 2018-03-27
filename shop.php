@@ -7,10 +7,13 @@
     </head>
     <body>
         <?php 
+            echo '<a href="index.php">Phancy Phoods</a>';
+        
             // getting the info and displaying it here:
             if (isset($_POST['recipeName']))
             {
                 $_SESSION['recipe'] = $_POST['recipeName'];
+                echo $_SESSION['recipe'];
             }
             else
             {
