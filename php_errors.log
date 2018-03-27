@@ -1,0 +1,10 @@
+[26-Mar-2018 20:54:55 UTC] PHP Notice:  Undefined index: name in /home/ubuntu/workspace/T/recipes/Apple Crumble Pie.php on line 41
+[26-Mar-2018 20:54:55 UTC] PHP Notice:  Undefined index: type in /home/ubuntu/workspace/T/recipes/Apple Crumble Pie.php on line 42
+[26-Mar-2018 20:54:55 UTC] PHP Notice:  Undefined index: avail in /home/ubuntu/workspace/T/recipes/Apple Crumble Pie.php on line 43
+[26-Mar-2018 20:54:55 UTC] PHP Notice:  Undefined index: order in /home/ubuntu/workspace/T/recipes/Apple Crumble Pie.php on line 44
+[26-Mar-2018 20:54:55 UTC] PHP Warning:  include(MDBConnection.php): failed to open stream: No such file or directory in /home/ubuntu/workspace/T/recipes/Apple Crumble Pie.php on line 46
+[26-Mar-2018 20:54:55 UTC] PHP Warning:  include(): Failed opening 'MDBConnection.php' for inclusion (include_path='.:/usr/share/php') in /home/ubuntu/workspace/T/recipes/Apple Crumble Pie.php on line 46
+[26-Mar-2018 20:54:55 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function getDataBaseconnection() in /home/ubuntu/workspace/T/recipes/Apple Crumble Pie.php:47
+Stack trace:
+#0 {main}
+  thrown in /home/ubuntu/workspace/T/recipes/Apple Crumble Pie.php on line 47

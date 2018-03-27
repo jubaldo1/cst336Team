@@ -96,8 +96,6 @@
         foreach($records as $record){
         echo "<tr><td>" . "<a href='recipes/" . $record['name'] . ".php'>". $record['name']. "</a>". "</td><td>" . $record['description'] . "</td><td>" . $record['price'] . "</td><td>" . $record['auth_name'] . "</td></tr>";
         
-        
-    
 }
    echo "</table>";     
 ?>

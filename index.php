@@ -98,7 +98,7 @@ session_start();
         echo " <thead><tr><td><h2>Recipe Name</h2></td><td><h2>Description</h2></td><td><h2>Cost</h2></td><td><h2>Author</h2></td></tr></thead>";
         foreach($records as $record){
         echo "<tr><td>" . "<a href='recipes/" . $record['name'] . ".php'>". $record['name']. "</a>". "</td><td>" . $record['description'] . "</td><td>" . $record['price'] . "</td><td>" . $record['auth_name'] . "</td>";
-        echo "<form method='POST'>";
+        echo "<form action='shop.php' method='POST'>";
                 echo "<input type='hidden' name='recipeName' value=" . $record['name']. ">";
                 echo "<input type='hidden' name='description' value=" . $record['description']. ">";
                 echo "<input type='hidden' name='price' value=" . $record['price']. ">";
@@ -108,10 +108,11 @@ session_start();
                 // If so, this item was just added to the cart. Display different button.
                 if($_POST['recipeName'] == $record['name']){
                     echo '<td><button class="btn btn-success">Added</button></td></tr>';
-                } else {
+                }
+                else {
                     echo '<td><button class="btn btn-warning">Add</button></td></tr>';
                 }
-}
+    }
    echo "</table>";     
 ?>
 </div>
