@@ -134,7 +134,7 @@ if (isset($_POST['form_products']))
                 // If so, this item was just added to the cart. Display different button.
                 // SESSION CAN GO IN HERE
                 if($_POST['recipeName'] == $record['name']){
-                    echo '<td><button type="submit" class="btn btn-success">Added</button></td></tr>';
+                    echo '<td><button class="btn btn-success">Added</button></td></tr>';
                 }
                 else {
                     echo '<td><button type="submit" class="btn btn-warning">Add</button></td></tr>';
