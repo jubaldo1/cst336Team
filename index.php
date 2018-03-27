@@ -47,18 +47,18 @@ session_start();
   </div>
 </form>
     <?php
-if (isset($_POST['form_products'])) 
+if (isset($_POST['recipeName'])) 
 {
-    if (!empty($_SESSION['products']))
+    if (!empty($_SESSION['recipes']))
     {
-        $products = array_unique(array_merge(unserialize($_SESSION['products']), $_POST['form_products']));
-        $_SESSION['products'] = serialize($products);
+        $recipes = array_unique(array_merge(unserialize($_SESSION['recipes']), $_POST['recipeName']));
+        $_SESSION['recipes'] = serialize($recipes);
     }
     else {
-        $_SESSION['products'] = serialize($_POST['form_products']);
+        $_SESSION['recipes'] = serialize($_POST['recipeName']);
     }
     
-    echo "<p>Your products have been registered!</p>";
+    echo "<p>Your recipe has been added!</p>";
 }
  ?>
  
@@ -124,7 +124,8 @@ if (isset($_POST['form_products']))
                     
         /*TEST: Added action='shop.php' to show the cart when a button is clicked*/
         // for this, we need to wrap up the info into one "object" and push it into a waiting array
-            echo "<form method='post'>";
+                
+                echo "<form method='post'>";
                 echo "<input type='hidden' name='recipeName' value=" . $record['name']. ">";
                 echo "<input type='hidden' name='description' value=" . $record['description']. ">";
                 echo "<input type='hidden' name='price' value=" . $record['price']. ">";
@@ -133,7 +134,9 @@ if (isset($_POST['form_products']))
                 // Check to see if the most recent POST request has the same itemId
                 // If so, this item was just added to the cart. Display different button.
                 // SESSION CAN GO IN HERE
-                if($_POST['recipeName'] == $record['name']){
+                // $_POST['recipeName'] == $record['name']
+              
+                if(isset($_POST['recipeName'])){
                     echo '<td><button class="btn btn-success">Added</button></td></tr>';
                 }
                 else {
