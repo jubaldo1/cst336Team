@@ -42,8 +42,9 @@ session_start();
   </div>
   
   <div class="form-group">
-      <input type="radio" name="sort" value="asc">Ascending<br>
-      <input type="radio" name="sort" value="desc">Descending<br>
+      <input type="radio" name="sort" value="name">Recipe<br>
+      <input type="radio" name="sort" value="auth_name">Author<br>
+      <input type="radio" name="sort" value="type_name">Culture<br>
   </div>
   
   <div class="form-group">
@@ -74,7 +75,10 @@ if (isset($_POST['recipeName']))
         include 'MDBConnection.php';
         $conn = getDataBaseconnection('Recipes');
         
-        if (isset($_POST["type"])) 
+        // the value for sorting
+        if (empty($_POST["sort"]))
+        {
+            if (isset($_POST["type"])) 
         {
            $type = $_POST["type"];   
         }
@@ -107,10 +111,55 @@ if (isset($_POST['recipeName']))
 		            "; 
         }
         else 
-        {
+         {
            $sql = " SELECT * FROM Recipe
                     LEFT JOIN Author ON Recipe.author_id=Author.author_id"; 
+         }
         }
+        else if (isset($_POST["sort"])) // else if a sort has been selected
+        {
+            $sort = $_POST["sort"];
+            
+            if (isset($_POST["type"])) 
+        {
+           $type = $_POST["type"];   
+        }
+        
+         if (isset($_POST["texty"])) 
+        {
+           $text = $_POST["texty"]; 
+        }
+        if (isset($_POST["texty"]) and $type == "author") 
+        {
+           $sql = "SELECT * FROM  Recipe
+		            LEFT JOIN Author ON Recipe.author_id=Author.author_id
+		            WHERE Author.auth_name LIKE '%$text%'
+		            ORDER BY $sort";
+        }
+        ///once they type+id filds ahs been filed out this can be used. all the other sql statemtents will also need to be updated
+        else if (isset($_POST["texty"]) and $type == "type_name") 
+        {
+           $sql = "SELECT * FROM  Recipe
+		            LEFT JOIN Author ON Recipe.author_id=Author.author_id
+		            LEFT JOIN Type ON Recipe.type_id=Type.type_id
+		            WHERE Type.type_name LIKE '%$text%'
+		            ORDER BY $sort";
+        }
+        else if(isset($_POST["texty"]) and (isset($_POST["type"]))) 
+        {
+           $sql = "SELECT * FROM  Recipe
+		            LEFT JOIN Author ON Recipe.author_id=Author.author_id
+		            WHERE $type LIKE '%$text%'
+		            ORDER BY $sort"; 
+        }
+        else 
+         {
+           $sql = " SELECT * FROM Recipe
+                    LEFT JOIN Author ON Recipe.author_id=Author.author_id
+                    ORDER BY $sort"; 
+         }
+        }
+        
        
         $stmt = $conn -> prepare ($sql);
         
