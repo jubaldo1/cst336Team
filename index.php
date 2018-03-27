@@ -41,6 +41,7 @@ session_start();
     </div>
   </div>
   
+  <label for="sort" class="col-sm-2 control-label">Choose Sort</label>
   <div class="form-group">
       <input type="radio" name="sort" value="name">Recipe<br>
       <input type="radio" name="sort" value="auth_name">Author<br>
