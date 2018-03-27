@@ -44,7 +44,6 @@ session_start();
   <div class="form-group">
       <input type="radio" name="sort" value="name">Recipe<br>
       <input type="radio" name="sort" value="auth_name">Author<br>
-      <input type="radio" name="sort" value="type_name">Culture<br>
   </div>
   
   <div class="form-group">
